@@ -158,7 +158,8 @@ module InheritViews
     def render_with_parent(*args, &block)
       if args.first == :parent
         args.shift
-        args.first[:file] = view_paths.find_parent_template(template.to_s, template.format)
+        args[0] ||= {}
+        args[0][:file] = view_paths.find_parent_template(template.to_s, template.format)
       end
       render_without_parent(*args, &block)
     end
